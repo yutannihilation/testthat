@@ -122,6 +122,8 @@ test_code <- function(test, code, env = test_env(), skip_on_empty = TRUE) {
     invokeRestart("continue_test")
   }
   handle_warning <- function(e) {
+    if (getOption("warn") >= 2) return()
+
     handled <<- TRUE
     e$expectation_calls <- frame_calls(11, 5)
     register_expectation(e)
